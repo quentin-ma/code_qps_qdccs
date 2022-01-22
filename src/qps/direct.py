@@ -14,18 +14,28 @@ class Direct(StrongSimulator, WeakSimulator):
     def __init__(self, nqbits):
         self.n = nqbits
         self.psi = np.zeros(pow(2, self.n))
+        self.psi[0] = 1
         pass
 
     def simulate_gate(self, gate, qubits):
-        print("initial shape", self.psi.shape)
+        new_shape = tuple ([2 for i in range(self.n)])
+
         k = len(qubits)
-        M = np.reshape(self.psi, (pow(2, k), pow(2, self.n - k)))
-        VM = gate.dot(M)
-        print(gate, qubits)
-        self.psi = VM.reshape(VM, pow(2, self.n))
+        
+        self.psi = self.psi.reshape(new_shape)
+        self.psi = np.moveaxis(self.psi, qubits, range(k))
+        
+        m_psi = np.reshape(self.psi, (pow(2, k), pow(2, self.n - k)))
+        m_psi = gate.dot(m_psi)
+
+        self.psi = np.reshape(m_psi, pow(2, self.n))
+
+        self.psi = self.psi.reshape(new_shape)
+        self.psi = np.moveaxis(self.psi, range(k), qubits)
+        self.psi = self.psi.reshape((2 ** self.n))
 
     def get_probability(self, classical_state):
-        return 0
+        return np.abs(self.psi[int(classical_state, 2)])**2
 
     def get_sample(self):
         return 0

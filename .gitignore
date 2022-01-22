@@ -1,0 +1,6 @@
+.pytest_cache
+/build
+/dev_env
+/src/qps.egg-info
+/tests/__pycache__
+/dist

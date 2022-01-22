@@ -89,7 +89,7 @@ for nqbits in range(2, 10):
     NAMES.append(f"bitorder_n={nqbits}")
 
 # GHZ state/Bell tests, we expect state |0...0> + |1..1> (up to normalization)
-for nqbits in range(2, 20):
+for nqbits in range(2, 10):
     circuit = [(HADAMARD, [0])]
     circuit.extend(list((CNOT, [i, i + 1]) for i in range(nqbits - 1)))
     CIRCUITS.append(circuit)
@@ -99,7 +99,7 @@ for nqbits in range(2, 20):
     NAMES.append(f"ghz_n={nqbits}")
 
 # Pure uniform state
-for nqbits in range(2, 15):
+for nqbits in range(2, 10):
     circuit = [(HADAMARD, [i]) for i in range(nqbits)]
     CIRCUITS.append(circuit)
     result = [
