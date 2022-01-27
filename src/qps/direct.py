@@ -38,4 +38,5 @@ class Direct(StrongSimulator, WeakSimulator):
         return np.abs(self.psi[int(classical_state, 2)])**2
 
     def get_sample(self):
-        return 0
+        idx = np.random.choice(range(1 << self.n), p=np.square(np.abs(self.psi)))
+        return format(idx, "b")
