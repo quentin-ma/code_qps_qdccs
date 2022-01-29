@@ -8,12 +8,11 @@ import numpy as np
 
 SIMULATORS = []
 
-# try:
-#     from qps.mps import MPS
-
-#     SIMULATORS.append(MPS)
-# except ImportError:
-#     pass
+try:
+    from qps.mps import MPS
+    SIMULATORS.append(MPS)
+except ImportError:
+    pass
 
 
 try:
