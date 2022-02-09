@@ -3,7 +3,6 @@ Main interface for simulators.
 """
 import abc
 
-
 class Simulator(abc.ABC):
     """
     Interface for a basic simulator. At this stage, its just a black box that eats
@@ -22,7 +21,6 @@ class Simulator(abc.ABC):
         """
         for gate, qubits in circuit:
             self.simulate_gate(gate, qubits)
-
 
 class StrongSimulator(Simulator, abc.ABC):
     """

@@ -5,9 +5,6 @@ from .simulator import StrongSimulator, WeakSimulator
 import numpy as np
 
 class Direct(StrongSimulator, WeakSimulator):
-    n = 0
-    k = 0
-    psi = []
     """
     A naive quantum circuit simulator based on matrix-vector multiplication.
     """
